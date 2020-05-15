@@ -7,5 +7,5 @@ This example shows how to use the Display Channel support in the ImageVault Epis
 
 ## Further reading
 * [Episerver Display Channels](https://world.episerver.com/documentation/developer-guides/CMS/rendering/display-channels/ "Episerver Display Channels")
-* [HTML <picture> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture "HTML <picture> element")
+* [HTML \<picture\> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture "HTML <picture> element")
 * [ImageVault Display Channel documentation (TODO)](# "ImageVault Display Channel documentation (TODO")
