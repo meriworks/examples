@@ -12,7 +12,7 @@ The resulting element looks like this:
 ```
 
 ## Requirements
-* Episerver CMS with configured Display Channels (this example uses two channels, `Mobile` and `Small Tablet`)
+* Episerver CMS with configured Display Channels (this example uses two channels, `Mobile` and `Small Laptop`)
 * At least version xx of the ImageVault.EPiServer nuget package (TODO)
 
 ## How to use
