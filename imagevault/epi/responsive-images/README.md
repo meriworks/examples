@@ -13,7 +13,7 @@ The resulting element looks like this:
 
 ## Requirements
 * Episerver CMS with configured Display Channels (this example uses two channels, `Mobile` and `Small Laptop`)
-* At least version xx of the ImageVault.EPiServer nuget package (TODO)
+* At least version 11.8 of the ImageVault.EPiServer.UI nuget package
 
 ## How to use
 Place `PictureMediaReference.cshtml` in your display template shared views folder (Views/Shared/DisplayTemplates) and use it to render any MediaReference from your view:
@@ -24,5 +24,5 @@ Place `PictureMediaReference.cshtml` in your display template shared views folde
 
 ## Further reading
 * [Episerver Display Channels](https://world.episerver.com/documentation/developer-guides/CMS/rendering/display-channels/ "Episerver Display Channels")
-* [ImageVault Display Channel documentation (TODO)](# "ImageVault Display Channel documentation (TODO")
+* [ImageVault Display Channel documentation](https://imagevault.se/en/documentation/?v=v5.0&page=connectors/episerver/display-channels.html "ImageVault Display Channel documentation (TODO")
 * [HTML \<picture\> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture "HTML <picture> element")
