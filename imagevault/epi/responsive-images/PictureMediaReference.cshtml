@@ -9,11 +9,15 @@
 
     Example usage from view:
     @Html.PropertyFor(m => m.MyMedia, "PictureMediaReference", new { title = "A good title" })
+
+    If the media is a video it falls back to rendering the HTML.
 *@
 @model MediaReference
 @using EPiServer.Editor
 @using ImageVault.EPiServer
 @using System.Text;
+@using EPiServer.ServiceLocation
+@using EPiServer.Web
 
 @{
     Exception exception = null;
@@ -40,7 +44,7 @@
     /// </summary>
     /// <param name="item">The WebMedia item to render</param>
     /// <returns></returns>
-    private string RenderTag(ChannelDisplayMediaItem item)
+    private string RenderPictureTag(ChannelDisplayMediaItem item)
     {
         var pictureControl = new System.Web.UI.HtmlControls.HtmlGenericControl("picture");
         var imgControl = new System.Web.UI.HtmlControls.HtmlGenericControl("img");
@@ -102,6 +106,22 @@
         }
         return output;
     }
+
+    /// <summary>
+    /// Render the HTML instead of constructing a picture element.
+    /// Can be used as a fallback if the media is e.g. a video.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    private string RenderHtmlTag(ChannelDisplayMediaItem item) {
+        var displayChannelService = ServiceLocator.Current.GetInstance<IDisplayChannelService>();
+        var activeChannel = displayChannelService.GetActiveChannels(new HttpContextWrapper(HttpContext.Current)).Select(c => c.ChannelName).FirstOrDefault();
+        if (item != null && !String.IsNullOrEmpty(activeChannel))
+        {
+            item = item.GetChannelMedia(activeChannel) ?? item;
+        }
+        return item.WebMedia.Html;
+    }
 }
 
 @if (item != null)
@@ -118,7 +138,12 @@
             }
         }
     }
-    @Html.Raw(RenderTag(item))
+    if (item.Original.ContentType.Contains("video")) {
+        @* If this media is a video, render the HTML instead of a picture tag *@
+        @Html.Raw(RenderHtmlTag(item))
+    } else {
+        @Html.Raw(RenderPictureTag(item))
+    }
 }
 else if (PageEditing.PageIsInEditMode && ((Model != null && Model.Id != 0)||exception!=null))
 {
