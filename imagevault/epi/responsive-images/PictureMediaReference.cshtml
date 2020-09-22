@@ -120,7 +120,7 @@
         {
             item = item.GetChannelMedia(activeChannel) ?? item;
         }
-        return item.WebMedia.Html;
+        return PageEditing.PageIsInEditMode ? item.Thumbnail.Html : item.WebMedia.Html;
     }
 }
 
